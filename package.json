@@ -1,0 +1,50 @@
+{
+  "name": "bayesian-duration-calculator",
+  "version": "1.0.0",
+  "description": "Analytical formula to estimate visitor required to obtain statistics in a Bayesian A/B test.",
+  "main": "src/conversionCalculator.js",
+  "scripts": {
+    "dev": "yarn install && cp git-hooks/* .git/hooks/ && chmod -R +x .git/hooks",
+    "lint": "eslint '**/*.js' --fix",
+    "lint-staged": "lint-staged",
+    "prepare": "husky install",
+    "prettier": "./node_modules/prettier/bin-prettier.js --write",
+    "test": "node tests/testConversion.js"
+  },
+  "author": "Anshul Gupta",
+  "license": "Apache-2.0",
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-promise": "^5.1.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
+    "prettier": "^2.3.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "pre-push": "yarn lint"
+    }
+  },
+  "lint-staged": {
+    "(src|tests)/*.js": [
+      "yarn lint",
+      "prettier",
+      "git add"
+    ],
+    "**/*.{json,md}": [
+      "prettier",
+      "git add"
+    ]
+  },
+  "engineStrict": true,
+  "engines": {
+    "node": ">= 12.16.0"
+  }
+}
